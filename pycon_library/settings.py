@@ -56,10 +56,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'pycon_library.urls'
 
+PROJECT_ROOT = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'pycon_library/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +72,12 @@ TEMPLATES = [
         },
     },
 ]
+
+# TEMPLATE_DIRS was deprecated in Django 1.8. This is shown as an example for
+# anyone still using an older version of Django.
+# TEMPLATE_DIRS = [
+#    os.path.join(os.path.join(BASE_DIR, 'pycon_library/templates')),
+#]
 
 WSGI_APPLICATION = 'pycon_library.wsgi.application'
 
