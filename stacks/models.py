@@ -86,7 +86,7 @@ class LoanedBook(models.Model):
     checkout_date = models.DateField()
     due_date = models.DateField()
     # Return date is null until the item is checked in
-    return_date = models.DateField(null=True)
+    return_date = models.DateField(null=True, blank=True)
     times_renewed = models.IntegerField(default=0)
     fine_paid = models.NullBooleanField()
 
