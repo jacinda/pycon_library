@@ -3,7 +3,6 @@ from django.contrib.auth.admin import UserAdmin
 
 from .models import LibraryUser
 
+@admin.register(LibraryUser)
 class LibraryUserAdmin(UserAdmin):
     pass
-
-admin.site.register(LibraryUser, LibraryUserAdmin)
