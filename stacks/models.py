@@ -98,6 +98,7 @@ class LoanedBook(models.Model):
         if timezone.now().date() > self.due_date:
             return True
         return False
+    is_overdue.boolean = True
 
     # TODO: Create this as a property
     def fine(self):
