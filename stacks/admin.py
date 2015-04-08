@@ -17,6 +17,7 @@ class BookAdmin(admin.ModelAdmin):
                 'fields': ('borrowing_period', 'max_renewal_count', 'daily_fine', 'maximum_fine')}),
             )
     filter_horizontal = ('authors',)
+    readonly_fields = ('call_number',)
 
 
 class LoanedBookInline(admin.TabularInline):
