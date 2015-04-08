@@ -19,4 +19,9 @@ class BookAdmin(admin.ModelAdmin):
     filter_horizontal = ('authors',)
 
 
+class LoanedBookInline(admin.TabularInline):
+    model = LoanedBook
+    extra = 1
+
+
 admin.site.register(LoanedBook)
