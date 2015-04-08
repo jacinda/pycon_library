@@ -24,4 +24,6 @@ class LoanedBookInline(admin.TabularInline):
     extra = 1
 
 
-admin.site.register(LoanedBook)
+@admin.register(LoanedBook)
+class LoanedBookAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'is_overdue', 'due_date')
