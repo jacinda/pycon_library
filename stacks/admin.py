@@ -16,5 +16,7 @@ class BookAdmin(admin.ModelAdmin):
             ('Loan Information', {
                 'fields': ('borrowing_period', 'max_renewal_count', 'daily_fine', 'maximum_fine')}),
             )
+    filter_horizontal = ('authors',)
+
 
 admin.site.register(LoanedBook)
