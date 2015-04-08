@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     # Project apps
     'libraryusers',
     'stacks',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
