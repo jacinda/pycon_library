@@ -29,8 +29,8 @@ class LibraryUser(AbstractUser):
     # Fields
     # Birthdate is allowed to be null so that the superuser can be successfully created.
     # We validate that this is not null for other users in our ModelForm
-    birthdate = models.DateField('Date of Birth', null=True)
-    gender = models.CharField('Gender', max_length=1, choices=GENDER_CHOICES)
+    birthdate = models.DateField('Date of Birth', null=True, blank=False)
+    gender = models.CharField('Gender', max_length=1, choices=GENDER_CHOICES, blank=False)
 
     def __unicode__(self):
         return self.get_full_name()
