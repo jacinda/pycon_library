@@ -24,14 +24,23 @@ class AbstractItem(models.Model):
     The fine per day is not defined in the Abstract Base Class because that will be different for
     different types of items.
     '''
-    call_number = models.CharField(max_length=100)
+    call_number = models.CharField(
+            max_length=100,
+            help_text=_("Usually Dewey Decimal or Library of Congress classification."))
     # TODO: This would be better as a callable that automatically got the next item number
-    item_number = models.PositiveIntegerField(default=1)
-    # Maximum number of days an item can be borrowed
-    borrowing_period = models.PositiveIntegerField(default=14)
-    # Max number of times an item can be renewed
-    max_renewal_count = models.IntegerField(default=2)
-    maximum_fine = models.DecimalField(max_digits=5, decimal_places=2, default='25.00'),
+    item_number = models.PositiveIntegerField(
+            default=1,
+            help_text=_("If we have multiple copies of this book, a unique identifier for the item."))
+    borrowing_period = models.PositiveIntegerField(
+            default=14,
+            help_text=_("Number of days this item can be borrowed before being renewed."))
+    max_renewal_count = models.IntegerField(
+            default=2,
+            help_text=_("Maxmimum number of times this item can be renewed."))
+    maximum_fine = models.DecimalField(
+            max_digits=5, decimal_places=2, default='25.00',
+            help_text=_("Maximum amount the patron will be fined for an overdue item. This is"
+                        " usually the replacement cost of the item.")),
     authors = models.ManyToManyField(Author, related_name='works')
 
     class Meta:
@@ -48,7 +57,9 @@ class Book(AbstractItem):
     '''
     page_count = models.PositiveIntegerField()
     title = models.CharField(max_length=4000)
-    daily_fine = models.DecimalField(max_digits=4, decimal_places=2, default='0.25',)
+    daily_fine = models.DecimalField(
+            max_digits=4, decimal_places=2, default='0.25',
+            help_text=_("Amount the patron will be fined per day for an overdue library book"))
 
     def __unicode__(self):
         return self.title
