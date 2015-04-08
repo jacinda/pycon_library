@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -92,6 +93,11 @@ class LoanedBook(models.Model):
 
     def __unicode__(self):
         return ': '.join([str(self.patron), str(self.book)])
+
+    def is_overdue(self):
+        if timezone.now().date() > self.due_date:
+            return True
+        return False
 
     # TODO: Create this as a property
     def fine(self):
