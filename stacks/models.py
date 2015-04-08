@@ -115,6 +115,7 @@ class LoanedBook(models.Model):
         else:
             return self.due_date
     highlighted_due_date.allow_tags = True
+    highlighted_due_date.admin_order_field = 'due_date'
 
     # TODO: Create this as a property
     def fine(self):
