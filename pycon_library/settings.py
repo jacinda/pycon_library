@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Project apps
     'libraryusers',
+    'stacks',
 )
 
 MIDDLEWARE_CLASSES = (
