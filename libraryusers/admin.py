@@ -7,6 +7,6 @@ from .models import LibraryUser
 class LibraryUserAdmin(UserAdmin):
 
     def get_fieldsets(self, request, obj=None):
-        return self.fieldsets + (
+        return super(LibraryUserAdmin, self).get_fieldsets(request, obj) + (
                 ('Custom Fields', {'fields': ('birthdate', 'gender')}),
         )
