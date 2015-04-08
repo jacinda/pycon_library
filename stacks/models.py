@@ -107,11 +107,11 @@ class LoanedBook(models.Model):
         if self.is_overdue():
             return format_html(
                     '<span style="background: red;">{}</span>',
-                    self.due_date)
+                    formats.localize(self.due_date))
         elif (self.due_date - timezone.now().date()) < timedelta(days=2):
             return format_html(
                     '<span style="background: yellow;">{}</span>',
-                    self.due_date)
+                    formats.localize(self.due_date))
         else:
             return self.due_date
     highlighted_due_date.allow_tags = True
