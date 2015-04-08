@@ -17,6 +17,7 @@ class BookAdmin(admin.ModelAdmin):
                 'fields': ('borrowing_period', 'max_renewal_count', 'daily_fine', 'maximum_fine')}),
             )
     filter_horizontal = ('authors',)
+    list_max_show_all = 600
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = super(BookAdmin, self).get_readonly_fields(request, obj)
