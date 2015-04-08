@@ -1,7 +1,10 @@
 from django.conf import settings
 from django.db import models
-from django.utils import timezone
+from django.utils import formats, timezone
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+
+from datetime import timedelta
 
 
 class Author(models.Model):
@@ -99,6 +102,19 @@ class LoanedBook(models.Model):
             return True
         return False
     is_overdue.boolean = True
+
+    def highlighted_due_date(self):
+        if self.is_overdue():
+            return format_html(
+                    '<span style="background: red;">{}</span>',
+                    self.due_date)
+        elif (self.due_date - timezone.now().date()) < timedelta(days=2):
+            return format_html(
+                    '<span style="background: yellow;">{}</span>',
+                    self.due_date)
+        else:
+            return self.due_date
+    highlighted_due_date.allow_tags = True
 
     # TODO: Create this as a property
     def fine(self):
