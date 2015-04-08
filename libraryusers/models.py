@@ -31,6 +31,7 @@ class LibraryUser(AbstractUser):
     # We validate that this is not null for other users in our ModelForm
     birthdate = models.DateField('Date of Birth', null=True, blank=False)
     gender = models.CharField('Gender', max_length=1, choices=GENDER_CHOICES, blank=False)
+    books = models.ManyToManyField('stacks.Book', through='stacks.LoanedBook')
 
     def __unicode__(self):
         return self.get_full_name()
