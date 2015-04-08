@@ -40,7 +40,7 @@ class AbstractItem(models.Model):
     maximum_fine = models.DecimalField(
             max_digits=5, decimal_places=2, default='25.00',
             help_text=_("Maximum amount the patron will be fined for an overdue item. This is"
-                        " usually the replacement cost of the item.")),
+                        " usually the replacement cost of the item."))
     authors = models.ManyToManyField(Author, related_name='works')
 
     class Meta:
